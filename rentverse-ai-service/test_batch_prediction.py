@@ -36,7 +36,7 @@ def test_batch_prediction():
         response = requests.post(url, json=test_data)
 
         print(f"\nResponse Status: {response.status_code}")
-        print(f"Response Data:")
+        print("Response Data:")
         print(json.dumps(response.json(), indent=2))
 
         if response.status_code == 200:

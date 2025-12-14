@@ -4,7 +4,6 @@ Command-line interface for RentVerse AI Service.
 
 import click
 import uvicorn
-from .config import get_settings
 
 
 @click.group()

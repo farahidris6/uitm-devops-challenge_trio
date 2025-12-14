@@ -2,13 +2,12 @@
 Configuration management for RentVerse AI Service.
 """
 
-import os
-from typing import Optional, List
+from typing import List
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     """Application settings."""
-    
+
     # App configuration
     app_name: str = "RentVerse AI Service"
     app_version: str = "0.1.0"
@@ -26,7 +25,7 @@ class Settings(BaseSettings):
     # API configuration
     api_prefix: str = "/api/v1"
     max_batch_size: int = 100
-    
+
     # Logging configuration
     log_level: str = "INFO"
     log_format: str = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

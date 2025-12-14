@@ -4,7 +4,7 @@ Main FastAPI application for RentVerse AI Service.
 
 import logging
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -45,7 +45,7 @@ async def lifespan(app: FastAPI):
     logger.info("RentVerse AI Service started successfully")
 
     yield
-    
+
     # Shutdown
     logger.info("Shutting down RentVerse AI Service...")
 

@@ -35,3 +35,30 @@ ruff = "^0.6.9"
 [tool.poetry.scripts]
 dev = "rentverse.cli:dev"
 start = "rentverse.cli:start"
+
+[tool.ruff]
+# Only check your main source folder(s)
+include = ["rentverse_ai_service", "rentverse"]  # adjust folder names
+
+# Ignore directories/files you don't want
+exclude = [
+    ".venv",
+    "__pycache__",
+    "*.pyc",
+    "migrations"
+]
+
+# Set rules to check (E = pycodestyle, F = pyflakes, W = warnings, C = complexity, B = bugbear)
+select = ["E", "F", "W", "C", "B"]
+line-length = 88
+
+[tool.bandit]
+# Scan the source folder
+skips = []
+targets = ["rentverse"]
+
+[tool.safety]
+# Optional: check all installed packages
+ignore = []
+
+

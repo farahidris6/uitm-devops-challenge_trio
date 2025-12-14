@@ -112,7 +112,7 @@ class PropertyPricePredictionModel:
                     raise ModelLoadError("Invalid pipeline format")
 
             self.is_loaded = True
-            logger.info(f"Pipeline loaded successfully:")
+            logger.info("Pipeline loaded successfully:")
             logger.info(f"  - Model: {self.model_name}")
             logger.info(f"  - Features: {len(self.feature_names)} ({self.feature_names})")
             logger.info(f"  - Log transformation: {'enabled' if self.use_log_transform else 'disabled'}")
@@ -415,17 +415,17 @@ class PropertyPricePredictionModel:
             # Get predicted price first
             predicted_price = self.predict(data)
             asking_price = data.get('asking_price', 0)
-            
+
             if asking_price <= 0:
                 raise ValueError("Asking price must be provided and positive")
-            
+
             # Calculate price deviation
             price_deviation = ((asking_price - predicted_price) / predicted_price) * 100
-            
+
             # Classification logic based on price deviation and other factors
             approval_reasons = []
             recommendations = []
-            
+
             # Price-based classification
             if abs(price_deviation) <= 15:  # Within 15% of predicted price
                 price_status = "acceptable"
@@ -437,31 +437,31 @@ class PropertyPricePredictionModel:
                 price_status = "underpriced"
                 approval_reasons.append("Competitively priced")
                 recommendations.append("Price is very competitive, consider slight increase if demand is high")
-            
+
             # Property quality factors
             bedrooms = data.get('bedrooms', 0)
             bathrooms = data.get('bathrooms', 0)
             area = data.get('area', 0)
-            
+
             # Check property specifications
             if bedrooms >= 1 and bathrooms >= 1 and area >= 300:
                 approval_reasons.append("Adequate property specifications")
             else:
                 recommendations.append("Verify property specifications meet minimum standards")
-            
+
             # Location assessment (basic)
             location = data.get('location', '').lower()
             premium_areas = ['klcc', 'mont kiara', 'bangsar', 'damansara', 'shah alam', 'petaling jaya']
             if any(area in location for area in premium_areas):
                 approval_reasons.append("Good location")
-            
+
             # Facilities assessment
             facilities = data.get('facilities', [])
             if facilities and len(facilities) >= 2:
                 approval_reasons.append("Adequate facilities")
             elif not facilities:
                 recommendations.append("Consider highlighting available facilities")
-            
+
             # Final approval decision
             if price_status == "acceptable" and len(approval_reasons) >= 2:
                 approval_status = "approved"
@@ -477,7 +477,7 @@ class PropertyPricePredictionModel:
                 if not approval_reasons:
                     approval_reasons.append("Requires manual review")
                 recommendations.append("Manual review recommended for final approval")
-            
+
             return {
                 "approval_status": approval_status,
                 "confidence_score": round(confidence_score, 2),
@@ -488,7 +488,7 @@ class PropertyPricePredictionModel:
                 "recommendations": recommendations if recommendations else None,
                 "status": "success"
             }
-            
+
         except Exception as e:
             logger.error(f"Error in listing approval classification: {str(e)}")
             raise PredictionError(f"Failed to classify listing approval: {str(e)}")

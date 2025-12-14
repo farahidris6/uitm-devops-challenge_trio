@@ -16,7 +16,7 @@ def setup_logging(log_level: str = "INFO", log_file: Optional[str] = None) -> No
         fmt='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
     )
-    
+
     # Setup console handler
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(formatter)

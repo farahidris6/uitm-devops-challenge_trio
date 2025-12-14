@@ -23,7 +23,7 @@ async def health_check():
     try:
         model = get_model()
         health_result = model.health_check()
-        
+
         return HealthResponse(
             status=health_result["status"],
             message=health_result["message"],
@@ -69,7 +69,7 @@ async def model_info():
                 "timestamp": datetime.now().isoformat()
             }
         )
-        
+
     except Exception as e:
         raise HTTPException(
             status_code=500,

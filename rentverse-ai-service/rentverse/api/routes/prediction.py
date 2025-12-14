@@ -169,7 +169,7 @@ async def predict_batch_properties(
                 "timestamp": datetime.now().isoformat()
             }
         )
-        
+
     except ValidationError as e:
         logger.error(f"Batch validation error: {e}")
         raise HTTPException(

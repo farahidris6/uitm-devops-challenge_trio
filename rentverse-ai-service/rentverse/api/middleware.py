@@ -20,29 +20,29 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next: Callable) -> Response:
         """Process request and log details."""
         start_time = time.time()
-        
+
         # Log request details
         logger.info(
             f"Request: {request.method} {request.url.path} "
             f"from {request.client.host if request.client else 'unknown'}"
         )
-        
+
         # Process request
         response = await call_next(request)
-        
+
         # Calculate processing time
         process_time = time.time() - start_time
-        
+
         # Log response details
         logger.info(
             f"Response: {response.status_code} "
             f"in {process_time:.3f}s"
         )
-        
+
         # Add processing time to response headers (but don't override CORS headers)
         if "X-Process-Time" not in response.headers:
             response.headers["X-Process-Time"] = str(process_time)
-        
+
         return response
 
 
@@ -54,7 +54,7 @@ class ErrorHandlingMiddleware(BaseHTTPMiddleware):
         try:
             response = await call_next(request)
             return response
-            
+
         except RentVerseException as e:
             logger.error(f"RentVerse error: {e.message}")
             return JSONResponse(
@@ -66,7 +66,7 @@ class ErrorHandlingMiddleware(BaseHTTPMiddleware):
                     "timestamp": time.time()
                 }
             )
-            
+
         except HTTPException as e:
             logger.error(f"HTTP error: {e.detail}")
             return JSONResponse(
@@ -78,7 +78,7 @@ class ErrorHandlingMiddleware(BaseHTTPMiddleware):
                     "timestamp": time.time()
                 }
             )
-            
+
         except Exception as e:
             logger.error(f"Unexpected error: {str(e)}")
             return JSONResponse(

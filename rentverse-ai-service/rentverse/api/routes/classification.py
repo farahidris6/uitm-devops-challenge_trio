@@ -38,7 +38,7 @@ async def predict_price(request: PricePredictionRequest, response: Response):
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "*"
-    
+
     logger.info(f"Received price prediction request for {request.property_type} property")
 
     try:
@@ -138,7 +138,7 @@ async def classify_listing_approval(request: ListingApprovalRequest, response: R
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "*"
-    
+
     logger.info(f"Received listing approval request for {request.property_type} property at RM {request.asking_price}")
 
     try:

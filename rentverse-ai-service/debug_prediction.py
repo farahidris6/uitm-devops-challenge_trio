@@ -64,7 +64,7 @@ def test_prediction_flow():
         result = model.predict_single(model_dict)
         print(f"✅ Prediction result: {result}")
 
-        print(f"\n🎉 All tests passed!")
+        print("\n🎉 All tests passed!")
 
     except Exception as e:
         print(f"\n❌ Error: {e}")
