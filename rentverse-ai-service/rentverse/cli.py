@@ -13,7 +13,7 @@ def cli():
 
 
 @cli.command()
-@click.option("--host", default="0.0.0.0", help="Host to bind the server to")
+@click.option("--host", default="127.0.0.1", help="Host to bind the server to")
 @click.option("--port", default=8000, help="Port to bind the server to")
 @click.option("--reload", is_flag=True, help="Enable auto-reload for development")
 @click.option("--log-level", default="info", help="Log level")
@@ -31,7 +31,7 @@ def start(host: str, port: int, reload: bool, log_level: str):
 
 
 @cli.command()
-@click.option("--host", default="0.0.0.0", help="Host to bind the server to")
+@click.option("--host", default="127.0.0.1", help="Host to bind the server to")
 @click.option("--port", default=8000, help="Port to bind the server to")
 def dev(host: str, port: int):
     """Start the service in development mode with auto-reload."""
