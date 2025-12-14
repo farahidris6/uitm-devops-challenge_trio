@@ -2,11 +2,8 @@ name: AI Service CI/CD Security Scan
 
 on:
   push:
-    #paths:
-      #- "rentverse-ai-service/**"
-    branches:
-      - main  # or whichever branch you're using
-    paths-ignore: []
+    paths:
+      - "rentverse-ai-service/**"
   pull_request:
     paths:
       - "rentverse-ai-service/**"
@@ -35,11 +32,11 @@ jobs:
 
       - name: Ruff linting
         working-directory: rentverse-ai-service
-        run: poetry run ruff check rentverse
-        
+        run: poetry run ruff check .
+
       - name: Bandit security scan
         working-directory: rentverse-ai-service
-        run: poetry run bandit -r rentverse -ll
+        run: poetry run bandit -r . -ll
 
       - name: Dependency vulnerability scan (Safety)
         working-directory: rentverse-ai-service
