@@ -38,6 +38,7 @@ jobs:
         working-directory: rentverse-ai-service
         run: poetry run bandit -r rentverse -ll
 
+
       - name: Dependency vulnerability scan (Safety)
         working-directory: rentverse-ai-service
         run: poetry run safety check
