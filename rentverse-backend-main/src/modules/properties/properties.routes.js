@@ -164,17 +164,17 @@ const router = express.Router();
  *         amenities: [
  *           {
  *             amenity: {
- *               id: "amenity-ac-001"
- *               name: "Air Conditioning"
- *               description: "Central air conditioning system"
+ *               id: "amenity-ac-001",
+ *               name: "Air Conditioning",
+ *               description: "Central air conditioning system",
  *               category: "COMFORT"
  *             }
  *           },
  *           {
  *             amenity: {
- *               id: "amenity-pool-001"
- *               name: "Swimming Pool"
- *               description: "Community swimming pool"
+ *               id: "amenity-pool-001",
+ *               name: "Swimming Pool",
+ *               description: "Community swimming pool",
  *               category: "RECREATION"
  *             }
  *           }
@@ -298,9 +298,9 @@ const router = express.Router();
  *             example:
  *               success: true
  *               data:
- *                 properties: [
- *                   {
- *                     id: "96712e5d-fef2-4d26-affc-b2a66efe51f6"
+ *                 properties: 
+ *                   
+ *                  -  id: "96712e5d-fef2-4d26-affc-b2a66efe51f6"
  *                     code: "PROP-ML-010"
  *                     title: "Historic Shophouse in Malacca"
  *                     description: "Beautifully restored 3-story shophouse in UNESCO World Heritage area."
@@ -325,23 +325,21 @@ const router = express.Router();
  *                     totalRatings: 12
  *                     isFavorited: false
  *                     favoriteCount: 8
- *                     images: [
- *                       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800"
- *                     ]
+ *                     images: 
+ *                       - "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800"
+ *                     
  *                     propertyType:
  *                       code: "APARTMENT"
  *                       name: "Apartment"
- *                     amenities: [
- *                       { amenity: { name: "Air Conditioning", category: "COMFORT" } }
- *                     ]
+ *                     amenities: 
+ *                       - amenity: { name: "Air Conditioning", category: "COMFORT" }
  *                     owner:
  *                       name: "John Doe"
  *                       email: "landlord@example.com"
  *                     createdAt: "2025-09-19T08:30:45.123Z"
  *                     updatedAt: "2025-09-19T10:15:22.456Z"
- *                   },
- *                   {
- *                     id: "a7b23c4d-e5f6-7890-abcd-ef1234567890"
+ *                   
+ *                  -  id: "a7b23c4d-e5f6-7890-abcd-ef1234567890"
  *                     code: "PROP-PG-011"
  *                     title: "Seaside Luxury Condo at Tanjung Bungah"
  *                     description: "Premium beachfront condominium with stunning sea views."
@@ -372,20 +370,20 @@ const router = express.Router();
  *                     propertyType:
  *                       code: "CONDOMINIUM"
  *                       name: "Condominium"
- *                     amenities: [
- *                       { amenity: { name: "Swimming Pool", category: "RECREATION" } },
- *                       { amenity: { name: "24-Hour Security", category: "SECURITY" } }
- *                     ]
+ *                     amenities: 
+ *                       - amenity: { name: "Swimming Pool", category: "RECREATION"  }
+ *                       - amenity: { name: "24-Hour Security", category: "SECURITY" }
  *                     owner:
  *                       name: "John Doe"
  *                       email: "landlord@example.com"
  *                     createdAt: "2025-09-20T14:22:10.987Z"
  *                     updatedAt: "2025-09-20T16:45:33.234Z"
- *                   }
- *                 ]
+ *                     
+ *                   
+ *                 
  *                 pagination:
  *                   page: 1
- *                   limit: 10
+ *                   limit: 5
  *                   total: 25
  *                   pages: 3
  *                 maps:
@@ -712,7 +710,7 @@ router.get('/geojson', propertiesController.getGeoJSON);
  *                     amenities: [
  *                       {
  *                         amenity: {
- *                           name: "Air Conditioning"
+ *                           name: "Air Conditioning",
  *                           category: "COMFORT"
  *                         }
  *                       }
@@ -1894,6 +1892,9 @@ router.get(
  *                             type: string
  *                             format: date-time
  *       404:
+ *         description: Property not found
+ */
+
 /**
  * @swagger
  * /api/properties/{id}/favorite-stats:

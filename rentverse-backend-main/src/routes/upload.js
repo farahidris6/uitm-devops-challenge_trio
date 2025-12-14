@@ -85,8 +85,7 @@ const router = express.Router();
  *                 format: binary
  *               optimize:
  *                 type: boolean
- *                 description: Whether to optimize files (default true)
- *                 description: Whether to optimize images (default true)
+ *                 description: Whether to optimize files/images (default true)
  *     responses:
  *       200:
  *         description: File uploaded successfully
