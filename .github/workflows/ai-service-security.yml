@@ -2,8 +2,11 @@ name: AI Service CI/CD Security Scan
 
 on:
   push:
-    paths:
-      - "rentverse-ai-service/**"
+    #paths:
+      #- "rentverse-ai-service/**"
+    branches:
+      - main  # or whichever branch you're using
+    paths-ignore: []
   pull_request:
     paths:
       - "rentverse-ai-service/**"
