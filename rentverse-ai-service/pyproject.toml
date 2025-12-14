@@ -37,18 +37,13 @@ dev = "rentverse.cli:dev"
 start = "rentverse.cli:start"
 
 [tool.ruff]
-# Only check your main source folder(s)
-include = ["rentverse_ai_service", "rentverse"]  # adjust folder names
-
-# Ignore directories/files you don't want
+include = ["rentverse"]
 exclude = [
     ".venv",
     "__pycache__",
     "*.pyc",
     "migrations"
 ]
-
-# Set rules to check (E = pycodestyle, F = pyflakes, W = warnings, C = complexity, B = bugbear)
 select = ["E", "F", "W", "C", "B"]
 line-length = 88
 

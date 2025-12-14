@@ -32,8 +32,8 @@ jobs:
 
       - name: Ruff linting
         working-directory: rentverse-ai-service
-        run: poetry run ruff check .
-
+        run: poetry run ruff check rentverse
+        
       - name: Bandit security scan
         working-directory: rentverse-ai-service
         run: poetry run bandit -r rentverse -ll
