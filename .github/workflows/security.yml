@@ -2,10 +2,13 @@ name: Full Repo CI/CD Security Scan
 
 on:
   push:
-    paths:
-      - "rentverse-ai-service/**"
-      - "rentverse-backend/**"
-      - "rentverse-frontend/**"
+    #paths:
+     # - "rentverse-ai-service/**"
+      #- "rentverse-backend/**"
+      #- "rentverse-frontend/**"
+    branches:
+      - main  # or whichever branch you're using
+    paths-ignore: []
   pull_request:
     paths:
       - "rentverse-ai-service/**"
