@@ -51,7 +51,7 @@ jobs:
 
       - name: Safety dependency scan (AI Service)
         working-directory: rentverse-ai-service
-        run: poetry run safety check
+        run: poetry run safety scan
 
       - name: Run Python tests (AI Service)
         working-directory: rentverse-ai-service
