@@ -28,7 +28,16 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
+<<<<<<< Updated upstream:rentverse-frontend/package.json
     "tailwindcss": "^4",
     "typescript": "^5"
   }
+=======
+    "@eslint/eslintrc": "^3"
+  },
+  "trustedDependencies": [
+    "@tailwindcss/oxide",
+    "unrs-resolver"
+  ]
+>>>>>>> Stashed changes:rentverse-frontend-main/package.json
 }

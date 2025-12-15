@@ -57,6 +57,7 @@ const router = express.Router();
  *           type: string
  *           format: date-time
  *           description: The date the user was last updated
+<<<<<<< Updated upstream:rentverse-backend/src/modules/users/users.routes.js
  *       example:
  *         id: "123e4567-e89b-12d3-a456-426614174000"
  *         email: john.doe@example.com
@@ -69,6 +70,20 @@ const router = express.Router();
  *         isActive: true
  *         createdAt: 2023-01-01T00:00:00.000Z
  *         updatedAt: 2023-01-01T00:00:00.000Z
+=======
+ *           example:
+ *           id: "123e4567-e89b-12d3-a456-426614174000"
+ *           email: john.doe@example.com
+ *           firstName: John
+ *           lastName: Doe
+ *           name: John Doe
+ *           dateOfBirth: 1990-01-15
+ *           phone: "+1234567890"
+ *           role: USER
+ *           isActive: true
+ *           createdAt: 2023-01-01T00:00:00.000Z
+ *          updatedAt: 2023-01-01T00:00:00.000Z
+>>>>>>> Stashed changes:rentverse-backend-main/src/modules/users/users.routes.js
  */
 
 /**

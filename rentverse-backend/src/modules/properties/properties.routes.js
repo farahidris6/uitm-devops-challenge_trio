@@ -164,9 +164,15 @@ const router = express.Router();
  *         amenities: [
  *           {
  *             amenity: {
+<<<<<<< Updated upstream:rentverse-backend/src/modules/properties/properties.routes.js
  *               id: "amenity-ac-001",
  *               name: "Air Conditioning",
  *               description: "Central air conditioning system",
+=======
+ *               id: "amenity-ac-001"
+ *               - name: "Air Conditioning"
+ *               description: "Central air conditioning system"
+>>>>>>> Stashed changes:rentverse-backend-main/src/modules/properties/properties.routes.js
  *               category: "COMFORT"
  *             }
  *           },
