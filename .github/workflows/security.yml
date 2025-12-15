@@ -1,0 +1,90 @@
+name: Full Repo CI/CD Security Scan
+
+on:
+  push:
+    paths:
+      - "rentverse-ai-service/**"
+      - "rentverse-backend/**"
+      - "rentverse-frontend/**"
+  pull_request:
+    paths:
+      - "rentverse-ai-service/**"
+      - "rentverse-backend/**"
+      - "rentverse-frontend/**"
+
+jobs:
+  security-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # -----------------------------
+      # Python: AI Service (Poetry)
+      # -----------------------------
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install AI Service dependencies
+        working-directory: rentverse-ai-service
+        run: poetry install --no-interaction
+
+      - name: Ruff linting (AI Service)
+        working-directory: rentverse-ai-service
+        run: poetry run ruff check .
+
+      - name: Bandit security scan (AI Service)
+        working-directory: rentverse-ai-service
+        run: poetry run bandit -r rentverse -ll
+
+      - name: Safety dependency scan (AI Service)
+        working-directory: rentverse-ai-service
+        run: poetry run safety check
+
+      - name: Run Python tests (AI Service)
+        working-directory: rentverse-ai-service
+        run: poetry run pytest
+
+      # -----------------------------
+      # Node.js: Frontend
+      # -----------------------------
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install frontend dependencies
+        working-directory: rentverse-frontend
+        run: pnpm install
+
+      - name: ESLint linting (Frontend)
+        working-directory: rentverse-frontend
+        run: pnpm eslint .
+
+      - name: Security audit (Frontend)
+        working-directory: rentverse-frontend
+        run: pnpm audit --audit-level=moderate
+
+      # -----------------------------
+      # Node.js: Backend
+      # -----------------------------
+      - name: Install backend dependencies
+        working-directory: rentverse-backend
+        run: pnpm install
+
+      - name: ESLint linting (Backend)
+        working-directory: rentverse-backend
+        run: pnpm eslint .
+
+      - name: Security audit (Backend)
+        working-directory: rentverse-backend
+        run: pnpm audit --audit-level=moderate
