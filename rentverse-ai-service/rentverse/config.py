@@ -33,6 +33,9 @@ class Settings(BaseSettings):
     cors_methods: List[str] = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
     cors_headers: List[str] = ["*"]
 
+    # ADD THIS LINE:
+    model_path: str = 'models/rent_model.pkl' # Use the default value from your error output
+    
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
